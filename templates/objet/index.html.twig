@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Objet index{% endblock %}
+
+{% block body %}
+
+<a href="/donnateur">donnateurs</a>
+
+    <h1>Objet index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Categorie</th>
+                <th>Description</th>
+                <th>Etat</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        <form action="/objet" method="GET">
+        <label for="cat">Categories</label>
+                <select id="cat" name="categories">
+                    <option name="cats">toutes</option>
+                    {% for objet in objets %}
+                    <option name="cat">{{ objet.categorie }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit">Requete</button>
+        </form>
+
+            {% for objet in objets  %}
+                
+                <tr>
+                    <td>{{ objet.id }}</td>
+                    <td>{{ objet.nom }}</td>
+                    <td>{{ objet.categorie }}</td>
+                    <td>{{ objet.description }}</td>
+                    <td>{{ objet.etat }}</td>
+                    <td>
+                        <a href="{{ path('objet_show', {'id': objet.id}) }}">show</a>
+                        <a href="{{ path('objet_edit', {'id': objet.id}) }}">edit</a>
+                    </td>
+                </tr>
+
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+    <a href="{{ path('objet_new') }}">Donnez</a>
+{% endblock %}

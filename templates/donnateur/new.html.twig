@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Donnateur{% endblock %}
+
+{% block body %}
+    <h1>Create new Donnateur</h1>
+
+    {{ include('donnateur/_form.html.twig') }}
+
+    <a href="{{ path('donnateur_index') }}">back to list</a>
+{% endblock %}
